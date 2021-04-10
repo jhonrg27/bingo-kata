@@ -19,15 +19,16 @@ class BingoCallerTest extends TestCase {
 
     public function testCheckerNumbers()
     {
-        $caller = new Caller();        
-
+        $caller = new Caller();
+        $calledNumbers = [];
+        $expectedNumbers = range(self::MIN_CARD_NUMBER, self::MAX_CARD_NUMBER);
+        
         for ($i=1; $i<=75; ++$i) {
-            $caller->callNumber();
+            $calledNumbers[] = $caller->callNumber();    
         }
-
-        $this->assertTrue(
-			$caller
-        );
+        
+		sort($calledNumbers);    
+        $this->assertEquals($expectedNumbers, $calledNumbers);
     }
 
 }
